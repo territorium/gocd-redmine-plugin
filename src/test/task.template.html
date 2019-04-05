@@ -1,0 +1,67 @@
+<!--
+  ~ Copyright 2017 ThoughtWorks, Inc.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="form_item_block">
+  <label for="ProjectId">Project ID (numeric or string identifier):<span class="asterisk">*</span></label>
+  <input id="ProjectId" ng-model="ProjectId" type="text" ng-required="true"
+         class="MB_focusable ng-pristine ng-valid ng-valid-required" servererror="undefined" required="required"/>
+  <span class="form_error"
+        ng-show="GOINPUTNAME[ProjectId].$error.server">{{ GOINPUTNAME[ProjectId].$error.server }}</span>
+</div>
+
+<div class="form_item_block">
+  <label for="VersionId">Version ID (numeric or string identifier):<span class="asterisk">*</span></label>
+  <input id="VersionId" ng-model="VersionId" type="text" ng-required="true"
+         class="MB_focusable ng-pristine ng-valid ng-valid-required" servererror="undefined" required="required"/>
+  <span class="form_error"
+        ng-show="GOINPUTNAME[VersionId].$error.server">{{ GOINPUTNAME[VersionId].$error.server }}</span>
+</div>
+
+<div class="form_item_block">
+  <label for="FilePath">File Path (e.g. app/build/outputs/apk/app-debug.apk):<span class="asterisk">*</span></label>
+  <input id="FilePath" ng-model="FilePath" type="text" ng-required="true"
+         class="MB_focusable ng-pristine ng-valid ng-valid-required" servererror="undefined" required="required"/>
+  <span class="form_error"
+        ng-show="GOINPUTNAME[FilePath].$error.server">{{ GOINPUTNAME[FilePath].$error.server }}</span>
+</div>
+
+<div class="form_item_block">
+  <label for="FileName">File Name (e.g. app/build/outputs/apk/app-debug.apk):<span class="asterisk">*</span></label>
+  <input id="FileName" ng-model="FileName" type="text" ng-required="true"
+         class="MB_focusable ng-pristine ng-valid ng-valid-required" servererror="undefined" required="required"/>
+  <span class="form_error"
+        ng-show="GOINPUTNAME[FileName].$error.server">{{ GOINPUTNAME[FileName].$error.server }}</span>
+
+  <p>Available substitutions:</p>
+  <ul>
+    <li style="clear: both; list-style: disc; margin-left: 15px;">%P: pipeline name</li>
+    <li style="clear: both; list-style: disc; margin-left: 15px;">%C: pipeline counter</li>
+    <li style="clear: both; list-style: disc; margin-left: 15px;">%L: pipeline label</li>
+    <li style="clear: both; list-style: disc; margin-left: 15px;">%R: long SHA1</li>
+    <li style="clear: both; list-style: disc; margin-left: 15px;">%r: short SHA1</li>
+    <li style="clear: both; list-style: disc; margin-left: 15px;">%A: Android version name (taken from versionName in
+      app/build.gradle)
+    </li>
+  </ul>
+</div>
+
+<div class="form_item_block">
+  <label for="AppFolder">App Folder (e.g. app):</label>
+  <input id="AppFolder" ng-model="AppFolder" type="text" ng-required="false"
+         class="MB_focusable ng-pristine ng-valid" servererror="undefined" required="required"/>
+  <span class="form_error"
+        ng-show="GOINPUTNAME[AppFolder].$error.server">{{ GOINPUTNAME[AppFolder].$error.server }}</span>
+</div>

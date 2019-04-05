@@ -1,0 +1,17 @@
+<div class="form_item_block">
+    <label ng-class="{'is-invalid-label': GOINPUTNAME[URL].$error.server}">WebDAV URL:<span class='asterix'>*</span></label>
+    <input ng-class="{'is-invalid-input': GOINPUTNAME[URL].$error.server}" type="text" ng-model="URL" ng-required="true"/>
+    <span class="form_error form-error" ng-class="{'is-visible': GOINPUTNAME[URL].$error.server}" ng-show="GOINPUTNAME[URL].$error.server">{{GOINPUTNAME[URL].$error.server}}</span>
+</div>
+
+<div class="form_item_block">
+    <label ng-class="{'is-invalid-label': GOINPUTNAME[Username].$error.server}">Username:</label>
+    <input ng-class="{'is-invalid-input': GOINPUTNAME[Username].$error.server}" type="text" ng-model="Username" ng-required="true"/>
+    <span class="form_error form-error" ng-class="{'is-visible': GOINPUTNAME[Username].$error.server}" ng-show="GOINPUTNAME[Username].$error.server">{{GOINPUTNAME[Username].$error.server}}</span>
+</div>
+
+<div class="form_item_block">
+    <label ng-class="{'is-invalid-label': GOINPUTNAME[Password].$error.server}">Password:</label>
+    <input ng-class="{'is-invalid-input': GOINPUTNAME[Password].$error.server}" type="password" ng-model="Password" ng-required="true"/>
+    <span class="form_error form-error" ng-class="{'is-visible': GOINPUTNAME[Password].$error.server}" ng-show="GOINPUTNAME[Password].$error.server">{{GOINPUTNAME[Password].$error.server}}</span>
+</div>
