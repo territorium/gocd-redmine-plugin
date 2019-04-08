@@ -109,6 +109,9 @@ public class Redmine {
         try (OutputStream output = connection.getOutputStream()) {
             output.write(json.getBytes());
         }
+        
+        InputStream response = connection.getInputStream();
+        console.info(Redmine.getText(response));
     }
     
 
