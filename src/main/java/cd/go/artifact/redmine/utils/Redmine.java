@@ -19,7 +19,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -54,7 +53,7 @@ public class Redmine {
   public void upload(String workingDir, String sourceFile, String targetFile, ConsoleLogger console)
       throws IOException {
     for (PathMapper match : PathMapper.list(workingDir, sourceFile)) {
-      AttachmentUpload upload = uploadFile(match.toFile(), sourceFile, console);
+      AttachmentUpload upload = uploadFile(match, console);
       if (upload == null || upload.upload == null || upload.upload.token == null
           || upload.upload.token.trim().isEmpty()) {
         console.error("Redmine didn't accept the file upload. Check API key, URL, artifact path...");
@@ -64,9 +63,9 @@ public class Redmine {
     }
   }
 
-  private AttachmentUpload uploadFile(File file, String sourceFile, ConsoleLogger console) throws IOException {
+  private AttachmentUpload uploadFile(PathMapper mapper, ConsoleLogger console) throws IOException {
     String url = this.url + "/uploads.json";
-    console.info(String.format("Uploading %s to %s", sourceFile, url));
+    console.info(String.format("Uploading %s to %s", mapper.getPath(), url));
 
     URLConnection connection = new URL(url).openConnection();
     connection.setDoOutput(true);
@@ -74,7 +73,7 @@ public class Redmine {
     connection.setRequestProperty("X-Redmine-API-Key", this.key);
 
     try (OutputStream output = connection.getOutputStream()) {
-      Files.copy(file.toPath(), output);
+      Files.copy(mapper.toFile().toPath(), output);
     }
 
     InputStream response = connection.getInputStream();
