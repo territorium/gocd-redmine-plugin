@@ -58,23 +58,25 @@ class PathParser {
     String text = "^" + path.getName(offset).toString().replace('%', '*') + "$";
     Pattern pattern = Pattern.compile(text);
     File folder = ((offset == 0) ? absolutePath : absolutePath.resolve(path.subpath(0, offset))).toFile();
-    for (File file : folder.listFiles(new PatternFilter(pattern))) {
-      List<String> values = new ArrayList<String>(groups);
-      Matcher matcher = pattern.matcher(file.getName());
-      if (matcher.find()) {
-        for (int index = 0; index < matcher.groupCount(); index++) {
-          values.add(matcher.group(index + 1));
+    if (folder.isDirectory()) {
+      for (File file : folder.listFiles(new PatternFilter(pattern))) {
+        List<String> values = new ArrayList<String>(groups);
+        Matcher matcher = pattern.matcher(file.getName());
+        if (matcher.find()) {
+          for (int index = 0; index < matcher.groupCount(); index++) {
+            values.add(matcher.group(index + 1));
+          }
         }
-      }
-      Path newPath =
-          (offset == 0) ? Paths.get(file.getName()) : path.subpath(0, offset).resolve(Paths.get(file.getName()));
-      if (offset + 1 < path.getNameCount())
-        newPath = newPath.resolve(path.subpath(offset + 1, path.getNameCount()));
+        Path newPath =
+            (offset == 0) ? Paths.get(file.getName()) : path.subpath(0, offset).resolve(Paths.get(file.getName()));
+        if (offset + 1 < path.getNameCount())
+          newPath = newPath.resolve(path.subpath(offset + 1, path.getNameCount()));
 
-      if (offset + 1 >= path.getNameCount())
-        matches.add(new PathMapper(absolutePath, newPath, values));
-      else {
-        process(newPath, offset + 1, values);
+        if (offset + 1 >= path.getNameCount())
+          matches.add(new PathMapper(absolutePath, newPath, values));
+        else {
+          process(newPath, offset + 1, values);
+        }
       }
     }
   }
