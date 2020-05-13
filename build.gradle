@@ -38,7 +38,7 @@ project.ext.pluginDesc = [
   id         : 'cd.go.artifact.redmine',
   version    : project.version,
   goCdVersion: '18.7.0',
-  name       : 'Artifact plugin for Redmine',
+  name       : 'Redmine Artifact Plugin for GoCD',
   description: 'Plugin allows to push/pull artifacts to Redmine',
   vendorName : 'TOL GmbH',
   vendorUrl  : 'https://github.com/territorium/gocd-redmine-artifact-plugin.git'
